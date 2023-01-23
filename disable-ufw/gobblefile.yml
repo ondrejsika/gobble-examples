@@ -1,0 +1,21 @@
+meta:
+  schema_version: 2
+hosts:
+  all:
+    - ssh_target: root@ma0.sikademo.com
+    - ssh_target: root@ma1.sikademo.com
+    - ssh_target: root@ma2.sikademo.com
+    - ssh_target: root@wo0.sikademo.com
+    - ssh_target: root@wo1.sikademo.com
+    - ssh_target: root@wo2.sikademo.com
+plays:
+  - name: Stop & Disable UFW
+    hosts:
+      - all
+    tasks:
+      - name: Stop UFW
+        command:
+          cmd: systemctl stop ufw
+      - name: Disable UFW
+        command:
+          cmd: systemctl disable ufw
